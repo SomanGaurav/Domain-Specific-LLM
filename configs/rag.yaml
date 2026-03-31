@@ -1,0 +1,21 @@
+# RAG pipeline over the same SEC-filings corpus, same base model as generator.
+
+inherits: "configs/base.yaml"
+
+method: "rag"
+
+embedding:
+  model: "BAAI/bge-small-en-v1.5"   # 33M params — fits alongside the LLM in RAM
+  device: "cpu"                      # keep the 4 GB GPU free for the generator
+
+chunking:
+  chunk_size: 512        # tokens
+  chunk_overlap: 64
+
+vectorstore:
+  backend: "chroma"
+  persist_dir: "data/vectorstore"
+  collection: "sec_filings"
+
+retrieval:
+  top_k: 4

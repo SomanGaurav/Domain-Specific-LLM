@@ -1,0 +1,25 @@
+# Shared settings inherited by every experiment config.
+# Hardware target: RTX 3050 Ti Laptop (4 GB VRAM), 7 GB RAM.
+
+model:
+  base_model: "Qwen/Qwen2.5-1.5B-Instruct"
+  max_seq_length: 1024
+
+data:
+  corpus_dir: "data/raw/sec_filings"
+  processed_dir: "data/processed"
+  qa_dataset: "data/processed/qa_dataset.jsonl"
+  splits:
+    train: 0.8
+    val: 0.1
+    test: 0.1
+  seed: 42
+
+mlflow:
+  tracking_uri: "mlruns"          # local file store; swap for a server URI later
+  experiment_name: "finllm-peft-vs-rag"
+
+generation:
+  max_new_tokens: 256
+  temperature: 0.0                # greedy for reproducible eval
+  batch_size: 1

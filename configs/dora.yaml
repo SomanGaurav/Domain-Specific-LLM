@@ -1,0 +1,12 @@
+# DoRA on a 4-bit base (QDoRA) so it runs on the local 4 GB GPU.
+# Identical to qlora.yaml except use_dora: true — isolates DoRA's contribution.
+
+inherits: "configs/qlora.yaml"
+
+method: "dora"
+
+peft:
+  use_dora: true
+
+training:
+  output_dir: "checkpoints/dora"

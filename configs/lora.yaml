@@ -1,0 +1,32 @@
+# fp16 LoRA. NOTE: 1.5B in fp16 + optimizer state will NOT fit in 4 GB VRAM.
+# Run this config on Colab/Kaggle (T4 16 GB), or switch base_model to a 0.5B
+# model to run it locally.
+
+inherits: "configs/base.yaml"
+
+method: "lora"
+
+quantization:
+  load_in_4bit: false
+
+peft:
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+  use_dora: false
+
+training:
+  epochs: 3
+  per_device_batch_size: 2
+  gradient_accumulation_steps: 8
+  learning_rate: 2.0e-4
+  lr_scheduler: "cosine"
+  warmup_ratio: 0.03
+  gradient_checkpointing: true
+  bf16: false
+  fp16: true
+  logging_steps: 10
+  eval_steps: 100
+  save_steps: 200
+  output_dir: "checkpoints/lora"
