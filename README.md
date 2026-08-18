@@ -18,8 +18,7 @@ All arms are scored on the same held-out test set: Exact Match, token F1,
 ROUGE-L, BERTScore, latency (mean/p50/p95), and peak GPU memory — logged under
 one MLflow experiment so runs are directly comparable.
 
-**Base model:** `Qwen/Qwen2.5-1.5B-Instruct`
-**Hardware target:** RTX 3050 Ti Laptop (4 GB VRAM), 7 GB RAM.
+
 
 ## Setup
 
@@ -68,9 +67,3 @@ src/finllm/
 tests/             smoke tests (config system, pure metrics)
 ```
 
-## Status
-
-- [x] Scaffold: configs, training/RAG/eval pipelines, MLflow wiring
-- [ ] QA dataset generation (`build_qa_dataset.py`)
-- [ ] Training runs (qlora, dora local; lora on Colab)
-- [ ] Full evaluation + results writeup
