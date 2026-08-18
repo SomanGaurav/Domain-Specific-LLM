@@ -1,4 +1,4 @@
-# finllm — PEFT vs RAG for Finance-Domain QA
+# finllm — PEFT LoRA v/s QLoRA for Finance-Domain QA
 
 Does parameter-efficient fine-tuning or retrieval-augmented generation adapt a
 small open LLM to a specialized domain better, under realistic resource
@@ -13,8 +13,6 @@ every experiment tracked in MLflow.
 | `base` | none (zero-shot baseline) | local GPU |
 | `lora` | fp16 LoRA | Colab/Kaggle T4 (fp16 1.5B won't fit 4 GB) |
 | `qlora` | 4-bit NF4 base + LoRA | local GPU |
-| `dora` | 4-bit NF4 base + DoRA (only `use_dora` differs from qlora) | local GPU |
-| `rag` | Chroma + bge-small retrieval, base model generator | local GPU |
 
 All arms are scored on the same held-out test set: Exact Match, token F1,
 ROUGE-L, BERTScore, latency (mean/p50/p95), and peak GPU memory — logged under
